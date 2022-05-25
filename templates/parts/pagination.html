@@ -1,0 +1,22 @@
+{% if paginator.count > paginator.per_page %}
+<nav class="mt-4" aria-label="Page navigation sample">
+    <ul class="pagination my_pagination">
+        {% if current_page != 1 %}
+            <li class="page-item"><a class="page-link paging" data-value="{{ current_page | add:-1 }}">Previous</a></li>
+        {% else %}
+            <li class="page-item disabled" style="cursor:no-drop;"><a class="page-link disabled">Previous</a></li>
+        {% endif %}
+        {% for number in paginator.page_range %}
+            <li class="page-item {% if number == current_page %}active{% endif %}">
+                <a class="page-link  paging" data-value="{{ number }}">{{ number }}</a>
+            </li>
+        {% endfor %}
+        {% if current_page != paginator.num_pages %}
+            <li class="page-item"><a class="page-link paging" data-value="{{ current_page|add:1 }}">Next</a></li>
+        {% else %}
+            <li class="page-item disabled" style="cursor:no-drop;"><a class="page-link disabled" href="">Next</a></li>
+        {% endif %}
+
+    </ul>
+</nav>
+{% endif %}

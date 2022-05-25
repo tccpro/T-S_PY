@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- ========================= SECTION PAGETOP ========================= -->
+    <section class="section-pagetop bg">
+        <div class="container">
+            <h2 class="title-page">Our Store</h2>
+
+        </div> <!-- container //  -->
+    </section>
+    <!-- ========================= SECTION INTRO END// ========================= -->
+
+    <!-- ========================= SECTION CONTENT ========================= -->
+    <section class="section-content padding-y">
+        <div class="container" >
+
+            <div class="row">
+                <aside class="col-md-3">
+
+                    <div class="card">
+                        <article class="filter-group">
+                            <header class="card-header">
+                                <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
+                                    <i class="icon-control fa fa-chevron-down"></i>
+                                    <h6 class="title">Categories</h6>
+                                </a>
+                            </header>
+                            <div class="filter-content collapse show" id="collapse_1" style="">
+                                <div class="card-body">
+
+                                    <ul class="list-menu">
+                                       {% for category in categories %}
+                                           <li {% if category.id == cat_id %}
+                                               style="background-color: #1a56e9;color: white"
+                                           {% endif %}><a
+                                                   style="cursor:pointer;"
+                                                   class="category-item" data-category="{{ category.id }}">{{ category.name }}  </a></li>
+                                        {% endfor %}
+                                    </ul>
+
+                                </div> <!-- card-body.// -->
+                            </div>
+                        </article> <!-- filter-group  .// -->
+                        <article class="filter-group">
+                            <header class="card-header">
+                                <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
+                                    <i class="icon-control fa fa-chevron-down"></i>
+                                    <h6 class="title">Sizes </h6>
+                                </a>
+                            </header>
+                            <div class="filter-content collapse show" id="collapse_4" style="">
+                                <div class="card-body">
+                                    <label class="checkbox-btn">
+                                        <input type="checkbox">
+                                        <span class="btn btn-light"> XS </span>
+                                    </label>
+
+                                    <label class="checkbox-btn">
+                                        <input type="checkbox">
+                                        <span class="btn btn-light"> SM </span>
+                                    </label>
+
+                                    <label class="checkbox-btn">
+                                        <input type="checkbox">
+                                        <span class="btn btn-light"> LG </span>
+                                    </label>
+
+                                    <label class="checkbox-btn">
+                                        <input type="checkbox">
+                                        <span class="btn btn-light"> XXL </span>
+                                    </label>
+                                </div><!-- card-body.// -->
+                            </div>
+                        </article> <!-- filter-group .// -->
+
+                        <article class="filter-group">
+                            <header class="card-header">
+                                <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
+                                    <i class="icon-control fa fa-chevron-down"></i>
+                                    <h6 class="title">Price range </h6>
+                                </a>
+                            </header>
+                            <div class="filter-content collapse show" id="collapse_3" style="">
+                                <div class="card-body">
+
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Min</label>
+                                                <!-- <input class="form-control" placeholder="$0" type="number"> -->
+                                                <input type="number" class="form-control" id="min_price" value="0">
+                                            </div>
+                                            <div class="form-group text-right col-md-6">
+                                                <label>Max</label>
+                                                <input type="number" class="form-control" id="max_price" value="0">
+                                                <i class="danger-text close-text" style="color: red;font-size: 10px">Minimal narxdan katta bo'lishi kerak</i>
+                                            </div>
+                                        </div> <!-- form-row.// -->
+                                        <button class="btn btn-block btn-primary apply-btn">Apply</button>
+
+                                </div><!-- card-body.// -->
+                            </div>
+                        </article> <!-- filter-group .// -->
+
+                    </div> <!-- card.// -->
+
+                </aside> <!-- col.// -->
+                <main class="col-md-9">
+
+                    <header class="border-bottom mb-4 pb-3">
+                        <div class="form-inline">
+                            <span class="mr-md-auto">{{ length }} Items found </span>
+                            {% with p='arzon qimmat yangi eski' %}
+                                <select name="sort_condition" class="mr-2 form-control sort_condition">
+                                    {% for i in p.split %}
+                                        <option value="{{ i }}"
+                                                {% if sorting == i %}
+                                                selected
+                                                {% endif %}
+                                        >{{ i }}</option>
+                                    {% endfor %}
+                                </select>
+                            {% endwith %}
+                            {% with p='6 9 12 15' %}
+                                <select name="per_page" class="mr-2 form-control per-page">
+                                    {% for i in p.split %}
+                                        <option value="{{ i }}"
+                                        {% if paginator.per_page|stringformat:'i' == i %}
+                                                selected
+                                        {% endif %}
+                                        >{{ i }}</option>
+                                    {% endfor %}
+                                </select>
+                            {% endwith %}
+
+                        </div>
+
+
+                    </header><!-- sect-heading -->
+
+                    <div class="row">
+
+                        {% for product in products %}
+                            <div class="col-md-4">
+                                {% include 'parts/productCard.html' with object=product %}
+                            </div> <!-- col.// -->
+                        {% endfor %}
+
+                        </div> <!-- row end.// -->
+
+
+                   {% include 'parts/pagination.html' with current_page=current_page paginator=paginator %}
+                </main> <!-- col.// -->
+
+            </div>
+
+        </div> <!-- container .//  -->
+    </section>
+
+    <script>
+
+
+    </script>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+{% endblock %}

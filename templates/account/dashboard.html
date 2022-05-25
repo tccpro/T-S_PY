@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+
+    <!-- ========================= SECTION CONTENT ========================= -->
+    <section class="section-conten padding-y bg">
+
+        <div class="container">
+            <div class="row">
+                <aside class="col-md-3">
+                    <!--   SIDEBAR   -->
+                    <ul class="list-group">
+                        <a class="list-group-item active" href="#"> My order history </a>
+                        <a class="list-group-item" href="#"> Transactions </a>
+                        <a class="list-group-item" href="#"> Return and refunds </a>
+                        <a class="list-group-item" href="#">Settings </a>
+                        <a class="list-group-item" href="#"> My Selling Items </a>
+                        <a class="list-group-item" href="#"> Received orders </a>
+                    </ul>
+                    <br>
+                    <a class="btn btn-light btn-block" href="{% url 'logout' %}"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a>
+                    <!--   SIDEBAR .//END   -->
+                </aside>
+                <main class="col-md-9">
+                {% for  order in orders %}
+                    <article class="card">
+                        <header class="card-header">
+                            <strong class="d-inline-block mr-3">Order ID: {{ order.id }}</strong>
+                            <span>Order Date: {{ order.order_date}}</span>
+                        </header>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h6 class="text-muted">Delivery to</h6>
+                                    <p>{{ order.customer}} <br>
+                                        Phone {{ order.customer.phone_number }} Email: {{ order.customer.email}} <br>
+                                        Location: 29, 87, Shahriston,  Tashkent, UZB <br>
+                                        P.O. Box: {{ order.id }}
+                                    </p>
+                                </div>
+                                <div class="col-md-4">
+                                    <h6 class="text-muted">Payment</h6>
+                                    <span class="text-success">
+						<i class="fab fa-lg fa-cc-visa"></i>
+					    Visa  **** 4216
+					</span>
+                                    <p>Subtotal: ${{ order.total_price }} <br>
+                                        Shipping fee:  $56 <br>
+                                        <span class="b">Total:  ${{ order.total_price | add:56 }} </span>
+                                    </p>
+                                </div>
+                            </div> <!-- row.// -->
+                        </div> <!-- card-body .// -->
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                {% for item in order.products %}
+                                    <tr>
+                                        <td width="65">
+                                            <img src="{{ item.product.get_url }}" class="img-xs border">
+                                        </td>
+                                        <td>
+                                            <p class="title mb-0">{{ item.product.name }} </p>
+                                            <var class="price text-muted">Price: ${{ item.product.price }}    quantity: x{{ item.quantity }}   total: ${{ item.total_price }}</var>
+                                        </td>
+                                        <td> Seller <br> Nike clothing </td>
+                                        <td width="250"> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div> <!-- table-responsive .end// -->
+                    </article> <!-- order-group.// -->
+                {% endfor %}
+                </main>
+            </div> <!-- row.// -->
+        </div>
+
+
+    </section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="max-age=604800" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>GreatKart | One of the Biggest Online Shopping Platform</title>
+
+    <link href="{% static 'images/favicon.ico' %}" rel="shortcut icon" type="image/x-icon">
+
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery-2.0.0.min.js'%}" type="text/javascript"></script>
+
+    <!-- Bootstrap4 files-->
+    <script src="{% static 'js/bootstrap.bundle.min.js'%}" type="text/javascript"></script>
+    <link href="{% static 'css/bootstrap.css'%}" rel="stylesheet" type="text/css"/>
+
+    <!-- Font awesome 5 -->
+    <link href="{% static 'fonts/fontawesome/css/all.min.css'%}" type="text/css" rel="stylesheet">
+
+    <!-- custom style -->
+    <link href="{% static 'css/ui.css'%}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/responsive.css'%}" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.4.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.4.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
+    <script src="https://unpkg.com/smoothscroll-polyfill/dist/smoothscroll.min.js" crossorigin="anonymous" defer></script>
+
+    <!-- custom javascript -->
+    <script src="{% static 'js/script.js'%}" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        /// some script
+
+        // jquery ready start
+        $(document).ready(function() {
+            // jQuery code
+
+        });
+        // jquery end
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+    </script>
+
+</head>

@@ -1,0 +1,29 @@
+{% load static %}
+<figure class="card card-product-grid">
+    <div class="img-wrap">
+        <img src="{{product.get_url}}">
+
+    </div> <!-- img-wrap.// -->
+    <figcaption class="info-wrap">
+        <div class="fix-height">
+            <a href="{% url 'product_detail' product.id %}" class="title">{{ product.name }}</a>
+            <div class="price-wrap mt-2">
+                <span class="price">${{ product.price }}</span>
+            </div> <!-- price-wrap.// -->
+        </div>
+        <button
+                id="pid{{ product.id }}"
+                data-id="{{ product.id }}" class="btn btn-block add-cart
+        {% if product.get_status == 'Add to cart' %}
+        btn-primary
+        {% elif product.get_status == 'Added to cart' %}
+        btn-success
+        {% else %}
+        btn-warning
+        {% endif %}
+"{% if product.get_status == 'Unavailable' %}
+                disabled
+                {% endif %}
+        >{{ product.get_status }} </button>
+    </figcaption>
+</figure>

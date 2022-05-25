@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="en">
+{% include 'layouts/head.html' %}
+<body>
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y" style="min-height:84vh">
+
+    <!-- ============================ COMPONENT LOGIN   ================================= -->
+    <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
+        <div class="card-body">
+            <h4 class="card-title mb-4">Sign in</h4>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="tel" name="phone_number" class="form-control" placeholder="Email Address" >
+                </div> <!-- form-group// -->
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control" placeholder="Password" >
+                </div> <!-- form-group// -->
+
+                <div class="form-group">
+                    <a href="{% url 'reset' %}" class="float-right">Forgot password?</a>
+
+                </div> <!-- form-group form-check .// -->
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Login  </button>
+                </div> <!-- form-group// -->
+            </form>
+        </div> <!-- card-body.// -->
+    </div> <!-- card .// -->
+
+    <p class="text-center mt-4">Don't have account? <a href="{% url 'registration' %}">Sign up</a></p>
+    <br><br>
+
+
+</section>
+
+
+
+
+</body>
+</html>
